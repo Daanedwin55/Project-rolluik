@@ -20,9 +20,12 @@ def getStatus(rolluiknummer):
 
 # Open / sluit shizle
 def sluitAlle():
-    for comport in settings.rolluikPoort:
-        serial = serial.Serial(comport = comport, baudrate = settings.baudrate, timeout = settings.timeout)
-        serial.write(b'sluit') #moet ook 'sluit' zijn in C om rolluik te sluiten
+   # for comport in settings.rolluikPoort:
+    #    serial = serial.Serial(comport = comport, baudrate = settings.baudrate, timeout = settings.timeout)
+    #    serial.write(b'sluit') #moet ook 'sluit' zijn in C om rolluik te sluiten
+    
+    for rolluik in range(len(settings.rolluikNaam)):
+        settings.status[rolluik] = 'red'
 
 def openAlle():
     for comport in settings.rolluikPoort:
@@ -34,7 +37,6 @@ def sluitRolluik(rolluiknummer):
    # serial = serial.Serial(comport=comport, baudrate = settings.baudrate, timeout = settings.timeout)
     #serial.Write(b'sluit') #moet ook 'sluit' zijn in C om rolluik te sluiten
     settings.status[rolluiknummer] = 'red'
-    print(settings.status)
 
 def openRolluik(rolluiknummer):
     #comport = settings.rolluikPoort[rolluiknummer] 
