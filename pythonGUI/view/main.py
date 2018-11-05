@@ -14,6 +14,8 @@ from view import instellingen
 from view import control
 from view import statistiek
 
+from model import rolluik as sesam
+
 from model import serialSettings
 class mainGUI(Frame):
     
@@ -74,10 +76,10 @@ class mainGUI(Frame):
             lichtintensiteit.grid(column=3, row=rowI, pady=5, padx=5)
             
             #Controle
-            omhoog = ttk.Button(self, text=u"\u25B2")
+            omhoog = ttk.Button(self, text=u"\u25B2", commmand=print("open"))
             omhoog.grid(column=4, row=rowI)
             
-            omlaag = ttk.Button(self, text=u"\u25BC")
+            omlaag = ttk.Button(self, text=u"\u25BC", command=print("sluit"))
             omlaag.grid(column=5, row=rowI)
             
             #Row increment :3

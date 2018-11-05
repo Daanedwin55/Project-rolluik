@@ -7,6 +7,7 @@ LARGE_FONT = ("Verdana", 12)
 
 from tkinter import *
 from tkinter import ttk
+
 from view import main
 class statistiekGUI(Frame):
     
