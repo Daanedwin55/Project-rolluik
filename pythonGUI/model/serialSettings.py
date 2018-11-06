@@ -3,7 +3,8 @@ Created on 4 Nov 2018
 
 @author: seanv
 '''
-
+from model import temperatuursensor as temp
+from model import lichtsensor as licht
 #Sensor settings
 sensorPort = 'COM4'
 baudrate = 9600
@@ -16,3 +17,7 @@ rolluikNaam = ['Eenheid 1', 'Eenheid 2', 'Puppies <3', 'Eenhied Daddy', 'TeamDad
 
 #Rolluik status
 status = ['green', 'green','green','red','green']
+
+
+#Temperatuur
+Temp = [temp.getTemperatuur(1), temp.getTemperatuur(1), temp.getTemperatuur(1), temp.getTemperatuur(1), temp.getTemperatuur(1)]
