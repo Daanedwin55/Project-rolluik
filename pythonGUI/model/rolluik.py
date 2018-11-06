@@ -4,9 +4,15 @@ Created on 4 Nov 2018
 @author: seanv
 '''
 import serial
+import serial.tools.list_ports as list_ports
 from model import serialSettings as settings
 
+#Scan voor rolluik
 
+scannedPorts = ['COM4']
+def scanCOM():
+    scannedPorts.append(list_ports.comports())
+    
 
 #Rolluik identificeren
 ID_COM = {}

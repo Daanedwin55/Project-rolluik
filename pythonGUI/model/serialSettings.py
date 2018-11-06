@@ -6,7 +6,7 @@ Created on 4 Nov 2018
 from model import temperatuursensor as temp
 from model import lichtsensor as licht
 #Sensor settings
-sensorPort = 'COM4'
+sensorPort = ['COM4']
 baudrate = 9600
 timeout = 1
 
@@ -20,4 +20,8 @@ status = ['green', 'green','green','red','green']
 
 
 #Temperatuur
-Temp = [temp.getTemperatuur(1), temp.getTemperatuur(1), temp.getTemperatuur(1), temp.getTemperatuur(1), temp.getTemperatuur(1)]
+#!!! REF BEFORE ASSIGNMENT ERROR !!! Temp = [temp.getTemperatuur(1), temp.getTemperatuur(1), temp.getTemperatuur(1), temp.getTemperatuur(1), temp.getTemperatuur(1)]
+temp = [21.2,20.8,22.2,21.9,22.1]
+
+#Lichtintensiteit
+licht = [90,90,80,80,70]

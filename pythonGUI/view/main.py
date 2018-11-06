@@ -94,11 +94,11 @@ class mainGUI(Frame):
     
             
             #Temperatuur
-            temperatuur1 = Label(self,text="10 Graden", background="white")
+            temperatuur1 = Label(self,text="{0} Graden".format(serialSettings.temp[rolluik]), background="white")
             temperatuur1.grid(column=2, row=rowI, pady=5, padx=5)
             
             #Lichtintensiteit
-            lichtintensiteit1 = Label(self, text="143 RARE UNITS", background="white")
+            lichtintensiteit1 = Label(self, text="{0} LUX".format(serialSettings.licht[rolluik]), background="white")
             lichtintensiteit1.grid(column=3, row=rowI, pady=5, padx=5)            
             
             rowI +=1
