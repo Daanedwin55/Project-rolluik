@@ -8,10 +8,10 @@ import serial
 from model import serialSettings as settings
 
 def getLichtintensiteitArduino(rolluik):
-    comport=settings.rolluikPoort[rolluik -1]
+    comport=settings.rolluikDict.get(rolluik)
     serial = serial.Serial(comport= comport, baudrate = settings.baudrate, timeout = settings.timeout)
     serial.write(b'l') #Moet ook licht zijn in C-code
-    lichtintensiteit = serial.readline.decode('ascii')
+    lichtintensiteit = serial.read() #of readline().decode('ascii') als er ascii gebruikt is =)
     return lichtintensiteit
 
 def getLichtintensiteit(rolluik):

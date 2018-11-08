@@ -23,6 +23,10 @@ status = ['green', 'green','green','red','green']
 #Temperatuur
 #!!! REF BEFORE ASSIGNMENT ERROR !!! Temp = [temp.getTemperatuur(1), temp.getTemperatuur(1), temp.getTemperatuur(1), temp.getTemperatuur(1), temp.getTemperatuur(1)]
 temp = [21.2,20.8,22.2,21.9,22.1]
+maxTemp = 25 #Temperatuur waarbij de rolluik omlaag gaan met de functie temperatuurSensor.setTemperatuur(rolluik, int(temperatuur)) :3
 
 #Lichtintensiteit
 licht = [90,90,80,80,70]
+
+#Ultrasoon
+ultra = [2,2,2,2,2]
