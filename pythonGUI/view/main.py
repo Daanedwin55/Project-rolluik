@@ -14,7 +14,7 @@ import time
 
 from view import instellingen
 from view import control
-from view import statistiek
+from view import statistiek as daddy
 
 from model import rolluik as sesam
 
@@ -56,7 +56,7 @@ class mainGUI(Frame):
         instelling = ttk.Button(self, text="Instellingen", command=lambda: controller.show(instellingen.instellingGUI))
         instelling.grid(column=5, row=0, pady=15)
         
-        statistiek = ttk.Button(self, text="Statistiek", command=lambda: controller.show(statistiek.statistiekGUI))
+        statistiek = ttk.Button(self, text="Statistiek", command=lambda: controller.show(daddy.statistiekGUI))
         statistiek.grid(column=1, row=110, pady=15)
 
         openAlle = ttk.Button(self, text="Open alle", command=lambda: openAll())
