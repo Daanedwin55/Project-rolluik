@@ -21,9 +21,9 @@ def getID():
     ID_COM.clear() #Leegt de dictionary eersts
 
     for port in settings.rolluikPoort:
-        serial = serial.Serial(comport=port, baudrate=settings.baudrate, timeout= settings.timeout)
-        serial.Write(b'e')
-        ID = serial.readline.decode('ascii')
+        daddy = serial.Serial(port=port, baudrate=settings.baudrate, timeout= settings.timeout)
+        daddy.Write(b'e')
+        ID = daddy.readline.decode('ascii')
         ID_COM[ID] = port #Vogt port toe aan ID_COM als waarde van ID(ID:COM)
 
 def getCOM(ID):
@@ -33,9 +33,9 @@ def getCOM(ID):
 
 def getStatus(rolluiknummer):
     comport = settings.rolluikDict.get(rolluiknummer) #-1 omdat eenheid 1 is index 0
-    serial = serial.Serial(comport=comport, baudrate = settings.baudrate, timeout = settings.timeout)
-    serial.Write(b'hihi') #moet ook 'hihi' zijn in C om rolluik status op te vragen
-    status = serial.readline.decode('ascii')
+    daddy = serial.Serial(port=comport, baudrate = settings.baudrate, timeout = settings.timeout)
+    daddy.Write(b'hihi') #moet ook 'hihi' zijn in C om rolluik status op te vragen
+    status = daddy.readline.decode('ascii')
     if status == 1:
         return 'open' 
     else:
@@ -44,26 +44,26 @@ def getStatus(rolluiknummer):
 # Open / sluit shizle
 def sluitAlle():
     for comport in settings.rolluikDict.values():
-        serial = serial.Serial(comport = comport, baudrate = settings.baudrate, timeout = settings.timeout)
-        serial.write(b'g') #moet ook 'sluit' zijn in C om rolluik te sluiten
+        daddy = serial.Serial(port = comport, baudrate = settings.baudrate, timeout = settings.timeout)
+        daddy.write(b'g') #moet ook 'sluit' zijn in C om rolluik te sluiten
     
     for rolluik in range(len(settings.rolluikNaam)):
         settings.status[rolluik] = 'red'
 
 def openAlle():
     for comport in settings.rolluikDict.values():
-        serial = serial.Serial(comport = comport, baudrate = settings.baudrate, timeout = settings.timeout)
-        serial.write(b'h') #moet ook 'open' zijn in C om rolluik te openen
+        daddy = serial.Serial(port = comport, baudrate = settings.baudrate, timeout = settings.timeout)
+        daddy.write(b'h') #moet ook 'open' zijn in C om rolluik te openen
 
 def sluitRolluik(rolluiknummer):
     comport = settings.rolluikDict.get(rolluiknummer)
-    serial = serial.Serial(comport=comport, baudrate = settings.baudrate, timeout = settings.timeout)
-    serial.Write(b'g') #moet ook 'sluit' zijn in C om rolluik te sluiten
+    daddy = serial.Serial(port=comport, baudrate = settings.baudrate, timeout = settings.timeout)
+    daddy.Write(b'g') #moet ook 'sluit' zijn in C om rolluik te sluiten
     settings.status[rolluiknummer] = 'red'
 
 def openRolluik(rolluiknummer):
     comport = settings.rolluikDict.get(rolluiknummer)
-    serial = serial.Serial(comport=comport, baudrate = settings.baudrate, timeout = settings.timeout)
-    serial.Write(b'h') #moet ook 'open' zijn in C om rolluik te openen
+    daddy = serial.Serial(port=comport, baudrate = settings.baudrate, timeout = settings.timeout)
+    daddy.Write(b'h') #moet ook 'open' zijn in C om rolluik te openen
     settings.status[rolluiknummer] = 'green'
     

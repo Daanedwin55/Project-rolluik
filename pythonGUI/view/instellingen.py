@@ -45,7 +45,7 @@ class instellingGUI(Frame):
  
         default = serialSettings.rolluikDict.get(1)
         
-        print(serialSettings.rolluikDict.values())
+        #print(serialSettings.rolluikDict.values())
         
         rowI = 5
         for rolluik in range(len(serialSettings.rolluikNaam)):
@@ -115,4 +115,4 @@ class instellingGUI(Frame):
         save5 = ttk.Button(self, text="Opslaan", command=lambda: update5())
         save5.grid(column=2, row=9)
         
-        print(serialSettings.rolluikPoort)
+        #print(serialSettings.rolluikPoort)
