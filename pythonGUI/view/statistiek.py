@@ -15,10 +15,9 @@ from model import serialSettings
 
 import matplotlib
 matplotlib.use("TKAgg")
-from matplotlib.backends.backend_tkagg import FigureCanvasAgg, NavigationToolbar2TkAgg,\
-    FigureCanvasTkAgg
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.figure import Figure
-import matplotlib.animation as animation
+
 
 #Global Variables
 f = Figure(figsize=(1.5,1.5),dpi=100)
@@ -44,15 +43,12 @@ class statistiekGUI(Frame):
     
     def __init__(self, parent, controller):
         Frame.__init__(self, parent)
-        label = Label(self, text="Statistiek", font=LARGE_FONT)
+        label = Label(self, text="Statistiek", font=LARGE_FONT,background="white")
         label.pack()
         
         knop1 = ttk.Button(self, text="Terug", command=lambda: controller.show(main.mainGUI))
         knop1.pack()
-        
-       
-        #a.bar([1,2,3,4,5],[serialSettings.temp[0],serialSettings.temp[1],serialSettings.temp[2],serialSettings.temp[3],serialSettings.temp[4]])       
-                
+                     
 
         
         self.update()
