@@ -66,9 +66,8 @@ class statistiekGUI(Frame):
         a.bar([1,2,3,4,5],[serialSettings.temp[0],serialSettings.temp[1],serialSettings.temp[2],serialSettings.temp[3],serialSettings.temp[4]],color='orange')       
 
         canvas = FigureCanvasTkAgg(f,self)
-        canvas.show()
         canvas.get_tk_widget().pack(side=BOTTOM, fill=BOTH,expand=True)
-        canvas.show()
+        canvas.draw()
             
         print("Hello")
            
