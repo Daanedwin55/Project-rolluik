@@ -95,7 +95,11 @@ class mainGUI(Frame):
 
             #Rolluik
             eenheid1 = ttk.Button(self, text=serialSettings.rolluikNaam[rolluik])
-            eenheid1.grid(column=0, row=rowI, ipady=5, ipadx=15, padx=5, pady=5)           
+            eenheid1.grid(column=0, row=rowI, ipady=5, ipadx=15, padx=5, pady=5)
+            
+            #Lichtintensiteit
+            lichtintensiteit1 = Label(self, text="{0} LUX".format(serialSettings.licht[rolluik]), background="white")
+            lichtintensiteit1.grid(column=3, row=rowI, pady=5, padx=5)            
             
             rowI +=1
         

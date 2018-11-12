@@ -7,8 +7,14 @@ import serial
 from model import serialSettings as settings
 from model import rolluik as sesam
 
+
+from random import randint
 def calcTemp(temp):
     return (temp * (140/255)) -40
+
+def liveTest():
+    i = randint(20,30)
+    settings.temp[0] = i
 
 def getTemperatuurArduino(rolluik):
     comport=settings.rolluikDict.get(rolluik)

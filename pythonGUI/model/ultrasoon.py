@@ -10,7 +10,7 @@ from model import rolluik as sesam
 def getUltrasoonArduino(rolluik):
     comport=settings.rolluikDict.get(rolluik)
     daddy = serial.Serial(port= comport, baudrate = settings.baudrate, timeout = settings.timeout)
-    daddy.write('d') #Moet ook licht zijn in C-code
+    daddy.write(b'd') #Moet ook licht zijn in C-code
     ultrasoon = daddy.read() #of readline().decode('ascii') als er ascii gebruikt is =)
     return ultrasoon
 

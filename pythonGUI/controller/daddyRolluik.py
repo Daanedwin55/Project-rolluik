@@ -8,9 +8,9 @@ Controller die bestuurd welke frames op het scherm getoond worden :)
 TODO:
 
     Pagina voor:
-        - Control =)
-        - Instellingen =)
-        - Statistiek - Daan & Marc
+        - Control
+        - Instellingen
+        - Statistiek
         maken
         
     Daadwerkelijk data uit seriele communicatie gaan gebruiken om objecten te modificeren =)
@@ -67,9 +67,9 @@ class root(Tk):
         
         for n in range(5):
             pass #Deze moet weg bij oplevering
-            #temperatuursensor.updateTemperatuur(n+1) #Uncommenten bij oplevering
-            #lichtsensor.updateLichtintensiteit(n+1) #Uncommenten bij oplevering
-            #ultrasoon.updateUltrasoon(n+1) #Uncommenten bij oplevering
+            #temperatuursensor.updateTemperatuur(n+1)
+            #lichtsensor.updateLichtintensiteit(n+1)
+            #ultrasoon.updateUltrasoon(n+1)
             
             
         self.after(2000, self.update)
