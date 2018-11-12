@@ -9,26 +9,41 @@
 #include "uart_control.h"
 #include "ultrasonor.h"
 
+uint8_t identifier = 101;
+
 /*
 *   Haal de waarde op en zet de waarde op het scherm via een seriële monitor
 */
 void lichtintensiteit() {
-	uint8_t licht = get_adc_value(A1);
-	loop_until_bit_is_set(UCSR0A, UDRE0);
-	UDR0 = licht;
+	uint16_t licht = get_adc_value(A1);
+	char temp[7];
+	itoa(licht, temp, 10); // Zet de gevonden int waarde om in een ASCII waarde
+	serialOut(temp);
 }
 
 void temperatuur() {
-	uint8_t temp = get_adc_value(A0);
-	loop_until_bit_is_set(UCSR0A, UDRE0);
-	UDR0 = temp;
+	uint8_t temperatuurv = get_adc_value(A0);
+	char temp[7];
+	itoa(temperatuurv, temp, 10); // Zet de gevonden int waarde om in een ASCII waarde
+	serialOut(temp);
 }
 
+void stat() {
+	char temp[7];
+	itoa(status, temp, 10); // Zet de gevonden int waarde om in een ASCII waarde
+	serialOut(temp);
+}
 
 void afstand() {
-	PORTC |= (1<<PC4);						// Zet trigger hoog
-	_delay_us(10);							// voor 10uS
-	PORTC &= ~(1<<PC4);						// zodat je de ultrasoonsensor triggert
+	PORTC |= (1<<PC4);		// Zet trigger hoog
+	_delay_us(10);			// voor 10uS
+	PORTC &= ~(1<<PC4);		// zodat je de ultrasoonsensor triggert
+}
+
+void ident() {
+	char temp[7];
+	itoa(identifier, temp, 10); // Zet de gevonden int waarde om in een ASCII waarde
+	serialOut(temp);
 }
 
 /*
@@ -43,7 +58,7 @@ void get_command() {
 		break;
 		
 		case 0x73: //status s
-		UDR0 = status;
+		stat();
 		break;
 		
 		case 0x6C: //light l
@@ -52,6 +67,10 @@ void get_command() {
 		
 		case 0x64: //distance d
 		afstand();
+		break;
+		
+		case 0x65: //identifier e
+		ident();
 		break;
 		
 		case 0x68: //up h
@@ -81,7 +100,6 @@ void statuslamp() {
 int main(void)
 {
 	DDRD = 0b00111000; //Zet outputs goed (pin 4-6)
-	DDRB = 0b10000000;
 	uart_init(); // Initialiseer UART communicatie
 	ultrasoon_init();
 

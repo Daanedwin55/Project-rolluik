@@ -5,8 +5,8 @@ uint8_t A0 = 0b00000000;
 uint8_t A1 = 0b00000001;
 uint8_t A2 = 0b00000010;
 uint8_t A3 = 0b00000011;
-uint8_t A4 = 0b00000100;
-uint8_t A5 = 0b00000101;
+uint8_t A4 = 0b00000100; //GERESERVEERD VOOR ULTRASOON!
+uint8_t A5 = 0b00000101; //GERESERVEERD VOOR ULTRASOON!
 
 /*
 *   ADC Controls

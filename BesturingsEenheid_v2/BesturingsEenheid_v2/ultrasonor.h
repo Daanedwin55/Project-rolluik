@@ -7,7 +7,7 @@
 
 // Initialiseer de poorten voor de ultrasoonsensor en initialiseer de interrupt
 void ultrasoon_init() {
-	DDRC = 0xFF;							// Port C all output. PC0: RW		PC1: RS		PC2: E
+	DDRC = 0b11111000;						// Port C all output. PC0: RW		PC1: RS		PC2: E
 	DDRC &= ~(1<<DDC5);						// Set Pin C5 as input to read Echo
 	PORTC |= (1<<PORTC5);					// Enable pull up on C5
 	PORTC &= ~(1<<PC4);						// Init C4 as low (trigger)
@@ -24,19 +24,21 @@ void ultrasoon_init() {
 
 // Interrupt methode die wordt uitgevoerd wanneer er een echo plaatsvind op de sensor (die staat op PC5/A5)
 ISR(PCINT1_vect) {
-	if (bit_is_set(PINC,PC5)) {					// Checks if echo is high
-		TCNT1 = 0;								// Reset Timer
+	if (bit_is_set(PINC,PC5)) {				// Checks if echo is high
+		TCNT1 = 0;							// Reset Timer
 		PORTC |= (1<<PC3);
-		} else {
-		uint16_t numuS = TCNT1;					// Save Timer value
+		} 
+		
+	else {
+		uint16_t numuS = TCNT1;				// Save Timer value
 		uint8_t oldSREG = SREG;
 		cli();
 
 		uint16_t uitkomst = (numuS*0.034/2)/15;
 		char temp[7];
-		itoa(uitkomst, temp, 10); // Zet de gevonden int waarde om in een ASCII waarde
+		itoa(uitkomst, temp, 10);			// Zet de gevonden int waarde om in een ASCII waarde
 		serialOut(temp);
 
-		SREG = oldSREG;							// Enable interrupts
+		SREG = oldSREG;						// Enable interrupts
 	}
 }
