@@ -8,11 +8,6 @@
  *      by the amount of microseconds PC5 (the echo) is active high divided by 58.
  *
  *      Pin placement of ATMega328p:
- *      Port D[7-0]			NewHavenDisplay DB[7-0]
- *      Pin PC0				NewHavenDisplay RW
- *      Pin PC1				NewHavenDisplay RS
- *      Pin PC2				NewHavenDisplay E
- *      Pin PC3				Debugging LED Active High
  *      Pin PC4				HC-SR04 Trig
  *      Pin PC5				HC-SR04 Echo
  */
@@ -27,7 +22,6 @@
 #include <stdlib.h>
 /*******************************************INITALIZE PORTS, TIMER, AND INTURRUPTS*******************************************/
 void init() {
-	DDRD = 0xFF;							// Port D all output. Display: DB0 - DB7 as PD0 - PD7
 	DDRC = 0xFF;							// Port C all output. PC0: RW		PC1: RS		PC2: E
 	DDRC &= ~(1<<DDC5);						// Set Pin C5 as input to read Echo
 	PORTC |= (1<<PORTC5);					// Enable pull up on C5
@@ -97,7 +91,7 @@ int main() {
 
 		PORTC |= (1<<PC4);						// Set trigger high
 		_delay_us(10);							// for 10uS
-		PORTC &= ~(1<<PC4);						// to trigger the ultrasonic module
+		PORTC &= ~(1<<PC4);						// to trigger the ultrasonic module				
 	}
 }
 /*******************************************INTURRUPT PCINT1 FOR PIN C5*******************************************/
@@ -109,19 +103,12 @@ ISR(PCINT1_vect) {
 		uint16_t numuS = TCNT1;					// Save Timer value
 		uint8_t oldSREG = SREG;
 		cli();	
-		/*								// Disable Global interrupts
-		ClearDisplay();							// Clear Display and send cursor home
-		Write16BitToDisplayAsDec(numuS/58);		// Write Timer Value / 58 (cm). Distance in cm = (uS of echo high) / 58
-		WriteDisplay(1,0,0x20);					// Space
-		WriteDisplay(1,0,0x63);					// c
-		WriteDisplay(1,0,0x6d);					// m
-		*/
+
 		uint16_t uitkomst = (numuS*0.034/2)/15;
 		char temp[7];
 		itoa(uitkomst, temp, 10);
 		serialOut(temp);		
 
 		SREG = oldSREG;							// Enable interrupts
-		PORTC &= ~(1<<PC3);						// Toggle debugging LED
 	}
 }

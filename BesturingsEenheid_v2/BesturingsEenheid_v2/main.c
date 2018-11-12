@@ -7,6 +7,7 @@
 #include "rolluik_controls.h"
 #include "adc_controls.h"
 #include "uart_control.h"
+#include "ultrasonor.h"
 
 /*
 *   Haal de waarde op en zet de waarde op het scherm via een seriële monitor
@@ -25,16 +26,14 @@ void temperatuur() {
 
 
 void afstand() {
-	PORTB &= ~(1 << PINB0); //LOW
-	_delay_us(2);
-	PORTB |= (1 << PINB0); //HIGH
-	_delay_us(10);
-	PORTB &= ~(1 << PINB0); //LOW
-	//long duration = pulseIn(PINB1, 1, 1000000L);
-	//int distance = duration*0.034/2;
-	//UDR0 = distance;
+	PORTC |= (1<<PC4);						// Zet trigger hoog
+	_delay_us(10);							// voor 10uS
+	PORTC &= ~(1<<PC4);						// zodat je de ultrasoonsensor triggert
 }
 
+/*
+*   Luister naar welke commando er wordt verstuurd, vang deze op en geef de juiste data terug
+*/
 void get_command() {
 	uint8_t command = uart_recive();
 	switch(command) {
@@ -52,7 +51,7 @@ void get_command() {
 		break;
 		
 		case 0x64: //distance d
-		UDR0 = command;
+		afstand();
 		break;
 		
 		case 0x68: //up h
@@ -84,10 +83,9 @@ int main(void)
 	DDRD = 0b00111000; //Zet outputs goed (pin 4-6)
 	DDRB = 0b10000000;
 	uart_init(); // Initialiseer UART communicatie
+	ultrasoon_init();
 
 	while (1) {
-		//get_command();
-		afstand();
-		_delay_ms(1000);
+		get_command();
 	}
 }

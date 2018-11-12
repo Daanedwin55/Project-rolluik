@@ -58,9 +58,9 @@ main.d
 C_DEPS_AS_ARGS +=  \
 main.d
 
-OUTPUT_FILE_PATH +=Besturingseenheid.elf
+OUTPUT_FILE_PATH +=BesturingsEenheid_v2.elf
 
-OUTPUT_FILE_PATH_AS_ARGS +=Besturingseenheid.elf
+OUTPUT_FILE_PATH_AS_ARGS +=BesturingsEenheid_v2.elf
 
 ADDITIONAL_DEPENDENCIES:=
 
@@ -107,13 +107,13 @@ all: $(OUTPUT_FILE_PATH) $(ADDITIONAL_DEPENDENCIES)
 $(OUTPUT_FILE_PATH): $(OBJS) $(USER_OBJS) $(OUTPUT_FILE_DEP) $(LIB_DEP) $(LINKER_SCRIPT_DEP)
 	@echo Building target: $@
 	@echo Invoking: AVR/GNU Linker : 5.4.0
-	$(QUOTE)D:\Software\Atmel Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE) -o$(OUTPUT_FILE_PATH_AS_ARGS) $(OBJS_AS_ARGS) $(USER_OBJS) $(LIBS) -Wl,-Map="Besturingseenheid.map" -Wl,--start-group -Wl,-lm -Wl,-ltwi.c -Wl,-ltwi.h -Wl,-lWire.cpp -Wl,-lWire.h  -Wl,--end-group -Wl,-L"D:\Dropbox\Hanzehogeschool\Jaar 2\Periode 1\Project\Code\Project-rolluik\Besturingseenheid\Besturingseenheid\Wire-master\src"  -Wl,--gc-sections -mmcu=atmega328p -B "D:\Software\Atmel Studio\7.0\Packs\atmel\ATmega_DFP\1.2.150\gcc\dev\atmega328p"  
+	$(QUOTE)D:\Software\Atmel Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE) -o$(OUTPUT_FILE_PATH_AS_ARGS) $(OBJS_AS_ARGS) $(USER_OBJS) $(LIBS) -Wl,-Map="BesturingsEenheid_v2.map" -Wl,--start-group -Wl,-lm  -Wl,--end-group -Wl,--gc-sections -mmcu=atmega328p -B "D:\Software\Atmel Studio\7.0\Packs\atmel\ATmega_DFP\1.2.150\gcc\dev\atmega328p"  
 	@echo Finished building target: $@
-	"D:\Software\Atmel Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-objcopy.exe" -O ihex -R .eeprom -R .fuse -R .lock -R .signature -R .user_signatures  "Besturingseenheid.elf" "Besturingseenheid.hex"
-	"D:\Software\Atmel Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-objcopy.exe" -j .eeprom  --set-section-flags=.eeprom=alloc,load --change-section-lma .eeprom=0  --no-change-warnings -O ihex "Besturingseenheid.elf" "Besturingseenheid.eep" || exit 0
-	"D:\Software\Atmel Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-objdump.exe" -h -S "Besturingseenheid.elf" > "Besturingseenheid.lss"
-	"D:\Software\Atmel Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-objcopy.exe" -O srec -R .eeprom -R .fuse -R .lock -R .signature -R .user_signatures "Besturingseenheid.elf" "Besturingseenheid.srec"
-	"D:\Software\Atmel Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-size.exe" "Besturingseenheid.elf"
+	"D:\Software\Atmel Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-objcopy.exe" -O ihex -R .eeprom -R .fuse -R .lock -R .signature -R .user_signatures  "BesturingsEenheid_v2.elf" "BesturingsEenheid_v2.hex"
+	"D:\Software\Atmel Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-objcopy.exe" -j .eeprom  --set-section-flags=.eeprom=alloc,load --change-section-lma .eeprom=0  --no-change-warnings -O ihex "BesturingsEenheid_v2.elf" "BesturingsEenheid_v2.eep" || exit 0
+	"D:\Software\Atmel Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-objdump.exe" -h -S "BesturingsEenheid_v2.elf" > "BesturingsEenheid_v2.lss"
+	"D:\Software\Atmel Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-objcopy.exe" -O srec -R .eeprom -R .fuse -R .lock -R .signature -R .user_signatures "BesturingsEenheid_v2.elf" "BesturingsEenheid_v2.srec"
+	"D:\Software\Atmel Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-size.exe" "BesturingsEenheid_v2.elf"
 	
 	
 
@@ -125,5 +125,5 @@ $(OUTPUT_FILE_PATH): $(OBJS) $(USER_OBJS) $(OUTPUT_FILE_DEP) $(LIB_DEP) $(LINKER
 clean:
 	-$(RM) $(OBJS_AS_ARGS) $(EXECUTABLES)  
 	-$(RM) $(C_DEPS_AS_ARGS)   
-	rm -rf "Besturingseenheid.elf" "Besturingseenheid.a" "Besturingseenheid.hex" "Besturingseenheid.lss" "Besturingseenheid.eep" "Besturingseenheid.map" "Besturingseenheid.srec" "Besturingseenheid.usersignatures"
+	rm -rf "BesturingsEenheid_v2.elf" "BesturingsEenheid_v2.a" "BesturingsEenheid_v2.hex" "BesturingsEenheid_v2.lss" "BesturingsEenheid_v2.eep" "BesturingsEenheid_v2.map" "BesturingsEenheid_v2.srec" "BesturingsEenheid_v2.usersignatures"
 	

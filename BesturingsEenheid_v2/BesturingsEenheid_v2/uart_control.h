@@ -1,6 +1,7 @@
 /*
 *   UART settings
 */
+#include <string.h>
 #define UBBRVAL 51 // baudrate op 19.200
 
 // output on USB = PD1 = board pin 1
@@ -25,4 +26,12 @@ void uart_init()
 unsigned char uart_recive(void) {
 	while(!(UCSR0A & (1<<RXC0)));
 	return UDR0;
+}
+
+void serialOut(char* Message){
+	int i = 0;
+	for(i=0; i < strlen(Message); i++){
+		while ( !( UCSR0A & (1<<UDRE0)) );
+		UDR0 = Message[i];
+	}
 }
