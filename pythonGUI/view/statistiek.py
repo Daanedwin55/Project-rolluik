@@ -12,18 +12,6 @@ from tkinter import ttk
 from view import main
 
 from model import serialSettings
-
-import matplotlib
-matplotlib.use("TKAgg")
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-from matplotlib.figure import Figure
-
-
-#Global Variables
-f = Figure(figsize=(1.5,1.5),dpi=100)
-a = f.add_subplot(111)
-
-
 class statistiekGUI(Frame):
     '''
         In serialSettings is een array temp
@@ -43,29 +31,16 @@ class statistiekGUI(Frame):
     
     def __init__(self, parent, controller):
         Frame.__init__(self, parent)
-        label = Label(self, text="Statistiek", font=LARGE_FONT,background="white")
-        label.pack()
+        label = Label(self, text="Statistiek", font=LARGE_FONT)
+        label.pack(pady=10, padx=10)
         
         knop1 = ttk.Button(self, text="Terug", command=lambda: controller.show(main.mainGUI))
-        knop1.pack()
-                     
-
+        knop1.pack() 
         
         self.update()
-
+        
+        
     def update(self):
         
-        global f
-        global a
         
-        a.clear()
-        a.bar([1,2,3,4,5],[serialSettings.temp[0],serialSettings.temp[1],serialSettings.temp[2],serialSettings.temp[3],serialSettings.temp[4]],color='orange')       
-
-        canvas = FigureCanvasTkAgg(f,self)
-        canvas.get_tk_widget().pack(side=BOTTOM, fill=BOTH,expand=True)
-        canvas.draw()
-            
-        print("Hello")
-           
-        self.after(2000,self.update)
-            
+        self.after(2000, self.update)
