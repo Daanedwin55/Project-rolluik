@@ -7,7 +7,7 @@ from model import temperatuursensor as temp
 from model import lichtsensor as licht
 #Sensor settings
 sensorPort = ['COM4']
-baudrate = 9600
+baudrate = 19200
 timeout = 1
 
 

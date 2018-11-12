@@ -19,9 +19,10 @@ def liveTest():
 def getTemperatuurArduino(rolluik):
     comport=settings.rolluikDict.get(rolluik)
     daddy = serial.Serial(port= comport, baudrate = settings.baudrate, timeout = settings.timeout)
-    daddy.write(b't') #Moet ook licht zijn in C-code
-    raw_temperatuur = daddy.read() #of readline().decode('ascii') als er ascii gebruikt is =)
+    daddy.write('t') #Moet ook licht zijn in C-code
+    raw_temperatuur = daddy.read().decode('ascii') #of readline().decode('ascii') als er ascii gebruikt is =)
     temperatuur = calcTemp(raw_temperatuur)
+    daddy.close()
     return temperatuur
 
 def getTemperatuur(rolluik):

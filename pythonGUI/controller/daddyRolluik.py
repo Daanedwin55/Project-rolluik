@@ -30,6 +30,8 @@ from view import instellingen
 
 from view import statistiek
 
+import threading
+
 class root(Tk):
     def __init__(self, *args, **kwargs):
         
@@ -62,18 +64,18 @@ class root(Tk):
         
         frame = self.frames[scherm]
         frame.tkraise()
+    
         
     def update(self):
         
         for n in range(5):
-            pass #Deze moet weg bij oplevering
+            #pass #Deze moet weg bij oplevering
+            temperatuursensor.liveTest()
             #temperatuursensor.updateTemperatuur(n+1)
             #lichtsensor.updateLichtintensiteit(n+1)
             #ultrasoon.updateUltrasoon(n+1)
             
-            
         self.after(2000, self.update)
         
 app = root()
-
-app.mainloop()
+threading.Thread(target=app.mainloop()).start()
