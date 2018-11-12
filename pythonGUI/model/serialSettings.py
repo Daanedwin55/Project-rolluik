@@ -17,7 +17,7 @@ rolluikNaam = ['Eenheid 1', 'Eenheid 2', 'Puppies <3', 'Eenhied Daddy', 'TeamDad
 rolluikDict = {1:'COM4',2:'COM5',3:'COM6',4:'COM7',5:'COM8'}
 
 #Rolluik status
-status = ['green', 'green','green','red','green']
+status = ['black', 'black','black','black','black']
 
 
 #Temperatuur
@@ -27,6 +27,7 @@ maxTemp = 25 #Temperatuur waarbij de rolluik omlaag gaan met de functie temperat
 
 #Lichtintensiteit
 licht = [90,90,80,80,70]
+maxLicht = 1400 #LUX
 
 #Ultrasoon
 ultra = [2,2,2,2,2]

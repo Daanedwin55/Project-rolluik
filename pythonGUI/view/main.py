@@ -224,7 +224,7 @@ class mainGUI(Frame):
         
         sadi += 1
         
-        self.after(2000, self.update) #Elke 1000 miliseconden wordt de functie opnieuw uitgevoerd
+        self.after(1000, self.update) #Elke 1000 miliseconden wordt de functie opnieuw uitgevoerd
         
             
             

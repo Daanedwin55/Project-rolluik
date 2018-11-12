@@ -6,6 +6,7 @@ Created on 4 Nov 2018
 
 import serial
 from model import serialSettings as settings
+from model import rolluik as sesam
 
 def getLichtintensiteitArduino(rolluik):
     comport=settings.rolluikDict.get(rolluik)
@@ -13,6 +14,11 @@ def getLichtintensiteitArduino(rolluik):
     daddy.write('l') #Moet ook licht zijn in C-code
     lichtintensiteit = daddy.read().decode('ascii') #of readline().decode('ascii') als er ascii gebruikt is =)
     daddy.close()
+    
+    if lichtintensiteit > settings.maxLicht:
+        sesam.sluitRolluik(rolluik)
+    else:
+        pass
     return lichtintensiteit
 
 def getLichtintensiteit(rolluik):

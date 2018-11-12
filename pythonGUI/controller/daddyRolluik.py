@@ -31,6 +31,7 @@ from view import instellingen
 from view import statistiek
 
 import threading
+from view.statistiek import statistiekGUI
 
 class root(Tk):
     def __init__(self, *args, **kwargs):
@@ -60,8 +61,7 @@ class root(Tk):
         self.show(main.mainGUI)
 
         self.update()
-    def show(self, scherm):
-        
+    def show(self, scherm):           
         frame = self.frames[scherm]
         frame.tkraise()
     
@@ -75,7 +75,7 @@ class root(Tk):
             #lichtsensor.updateLichtintensiteit(n+1)
             #ultrasoon.updateUltrasoon(n+1)
             
-        self.after(2000, self.update)
+        self.after(1000, self.update)
         
 app = root()
 threading.Thread(target=app.mainloop()).start()

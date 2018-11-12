@@ -23,6 +23,11 @@ def getTemperatuurArduino(rolluik):
     raw_temperatuur = daddy.read().decode('ascii') #of readline().decode('ascii') als er ascii gebruikt is =)
     temperatuur = calcTemp(raw_temperatuur)
     daddy.close()
+    
+    if temperatuur >= settings.maxTemp: #Sluit t rolluik als de ontvangen temperatuur hoger is dan de maxTemp
+        sesam.sluitRolluik(rolluik)
+    else:
+        pass
     return temperatuur
 
 def getTemperatuur(rolluik):

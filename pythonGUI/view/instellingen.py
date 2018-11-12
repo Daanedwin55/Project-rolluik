@@ -41,7 +41,7 @@ class instellingGUI(Frame):
         varDrop4.set(serialSettings.rolluikDict.get(4))
         
         varDrop5 = StringVar(self)
-        varDrop5.set(serialSettings.rolluikDict.get(5))
+        varDrop5.set(serialSettings.rolluikDict.get(5))    
  
         default = serialSettings.rolluikDict.get(1)
         
@@ -114,5 +114,4 @@ class instellingGUI(Frame):
         varDrop5.set(serialSettings.rolluikDict.get(5))
         save5 = ttk.Button(self, text="Opslaan", command=lambda: update5())
         save5.grid(column=2, row=9)
-        
         #print(serialSettings.rolluikPoort)
