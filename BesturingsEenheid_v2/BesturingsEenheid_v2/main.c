@@ -50,7 +50,7 @@ void ident() {
 *   Luister naar welke commando er wordt verstuurd, vang deze op en geef de juiste data terug
 */
 void get_command() {
-	uint8_t command = uart_recive();
+	uint8_t command = uart_receive();
 	switch(command) {
 
 		case 0x74: //temp t
@@ -102,6 +102,7 @@ int main(void)
 	DDRD = 0b00111000; //Zet outputs goed (pin 4-6)
 	uart_init(); // Initialiseer UART communicatie
 	ultrasoon_init();
+	pind_high(PIND3);
 
 	while (1) {
 		get_command();

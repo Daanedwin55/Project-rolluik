@@ -23,7 +23,7 @@ void uart_init()
 /*
 *   Ophalen van gegevens die worden ontvangen
 */
-unsigned char uart_recive(void) {
+unsigned char uart_receive(void) {
 	while(!(UCSR0A & (1<<RXC0)));
 	return UDR0;
 }
